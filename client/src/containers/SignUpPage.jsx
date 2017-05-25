@@ -4,8 +4,8 @@ import SignUpForm from '../components/SignUpForm.jsx';
 
 class SignUpPage extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       errors: {},
@@ -21,19 +21,10 @@ class SignUpPage extends React.Component {
   }
 
   /**
-   * Change the user object.
+   * Process the form.
    */
-  changeUser(event) {
-    const field = event.target.name;
-    const user = this.state.user;
-    user[field] = event.target.value;
-
-    this.setState({
-      user
-    });
-  }
-
   processForm(event) {
+    // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
     // create a string for an HTTP body message
@@ -56,7 +47,11 @@ class SignUpPage extends React.Component {
           errors: {}
         });
 
-        console.log('The form is valid');
+        // set a message
+        localStorage.setItem('successMessage', xhr.response.message);
+
+        // make a redirect
+        this.context.router.replace('/login');
       } else {
         // failure
 
@@ -71,6 +66,24 @@ class SignUpPage extends React.Component {
     xhr.send(formData);
   }
 
+  /**
+   * Change the user object.
+   *
+   * @param {object} event - the JavaScript event object
+   */
+  changeUser(event) {
+    const field = event.target.name;
+    const user = this.state.user;
+    user[field] = event.target.value;
+
+    this.setState({
+      user
+    });
+  }
+
+  /**
+   * Render the component.
+   */
   render() {
     return (
       <SignUpForm
@@ -83,5 +96,9 @@ class SignUpPage extends React.Component {
   }
 
 }
+
+SignUpPage.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default SignUpPage;
