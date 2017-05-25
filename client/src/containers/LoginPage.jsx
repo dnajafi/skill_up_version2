@@ -1,14 +1,24 @@
 import React, { PropTypes } from 'react';
+import Auth from '../modules/Auth';
 import LoginForm from '../components/LoginForm.jsx';
 
 
 class LoginPage extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
+    const storedMessage = localStorage.getItem('successMessage');
+    let successMessage = '';
+
+    if (storedMessage) {
+      successMessage = storedMessage;
+      localStorage.removeItem('successMessage');
+    }
 
     this.state = {
       errors: {},
+      successMessage,
       user: {
         email: '',
         password: ''
@@ -23,9 +33,10 @@ class LoginPage extends React.Component {
    * Process the form.
    */
   processForm(event) {
+    // prevent form submission event
     event.preventDefault();
 
-    // create a string for the HTTP body
+    // create a string for an HTTP body message
     const email = encodeURIComponent(this.state.user.email);
     const password = encodeURIComponent(this.state.user.password);
     const formData = `email=${email}&password=${password}`;
@@ -44,10 +55,16 @@ class LoginPage extends React.Component {
           errors: {}
         });
 
-        console.log('The form is valid');
+        // save the token
+        Auth.authenticateUser(xhr.response.token);
+
+
+        // change the current URL to /
+        this.context.router.replace('/');
       } else {
         // failure
 
+        // change the component state
         const errors = xhr.response.errors ? xhr.response.errors : {};
         errors.summary = xhr.response.message;
 
@@ -56,12 +73,13 @@ class LoginPage extends React.Component {
         });
       }
     });
-    
     xhr.send(formData);
   }
 
   /**
    * Change the user object.
+   *
+   * @param {object} event - the JavaScript event object
    */
   changeUser(event) {
     const field = event.target.name;
@@ -73,17 +91,25 @@ class LoginPage extends React.Component {
     });
   }
 
+  /**
+   * Render the component.
+   */
   render() {
     return (
       <LoginForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
+        successMessage={this.state.successMessage}
         user={this.state.user}
       />
     );
   }
 
 }
+
+LoginPage.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default LoginPage;
