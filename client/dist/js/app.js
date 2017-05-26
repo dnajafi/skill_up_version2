@@ -16627,6 +16627,13 @@ var LoginPage = function (_React$Component) {
           // save the token
           _Auth2.default.authenticateUser(xhr.response.token);
 
+          //***************************
+          // Need to set currentUser in Redux store
+          // 
+
+          //***************************
+
+
           // change the current URL to /
           _this2.context.router.replace('/');
         } else {

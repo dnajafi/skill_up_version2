@@ -58,6 +58,12 @@ class LoginPage extends React.Component {
         // save the token
         Auth.authenticateUser(xhr.response.token);
 
+        //***************************
+        // Need to set currentUser in Redux store
+        // 
+
+        //***************************
+
 
         // change the current URL to /
         this.context.router.replace('/');

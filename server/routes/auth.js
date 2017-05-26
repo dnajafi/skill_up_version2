@@ -42,8 +42,6 @@ function validateSignupForm(payload) {
 
 /**
  * Validate the login form
- *
- * payload - the HTTP body message
  */
 function validateLoginForm(payload) {
   const errors = {};

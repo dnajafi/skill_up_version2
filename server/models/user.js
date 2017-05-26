@@ -6,8 +6,33 @@ const UserSchema = new mongoose.Schema({
     type: String,
     index: { unique: true }
   },
-  password: String,
-  name: String
+  password: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  following: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
+  followers: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
+  skills: [{
+    type: Schema.ObjectId,
+    ref: 'Skill'
+  }],
+  image_url: {
+    type: String
+  },
+  bio: {
+    type: String
+  },
+  motto: {
+    type: String
+  }
 });
 
 
