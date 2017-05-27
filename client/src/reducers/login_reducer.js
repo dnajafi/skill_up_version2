@@ -1,7 +1,6 @@
 import ActionTypes from '../constants/action_types';
 
-export function interestedReducer(state = {}, action) {
-
+export function loginReducer(state = {}, action) {
 	switch(action.type) {
 		case ActionTypes.SetCurrentUserRequested: {
 			return Object.assign({}, state, {
@@ -17,40 +16,19 @@ export function interestedReducer(state = {}, action) {
 			});
 		}
 		case ActionTypes.SetCurrentUserFulfilled: {
-
-			const { email, name, following, followers, skills, image_url, bio, motto } = action.data;
-
 			return Object.assign({}, state, {
 				inProgress: false,
 				success: 'Successfully retrieved current user that is logged in.',
-				email,
-				name,
-				following,
-				followers,
-				skills,
-				image_url,
-				bio,
-				motto
+				currentUser: action.userData
 			});
-
-
 		}
-
-
-
-
-
-
-		
-	SetCurrentUserFulfilled: 'SET_CURRENT_USER_FULFILLED'
-
-
-
+		default:
+			return state;
 	}
-
-
-
-
-
-
 }
+
+// export const getCurrentUser = state => state.currentUser;
+
+// export function getCurrentUser(state) {
+// 	return state.currentUser;
+// }

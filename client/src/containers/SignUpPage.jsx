@@ -68,8 +68,6 @@ class SignUpPage extends React.Component {
 
   /**
    * Change the user object.
-   *
-   * @param {object} event - the JavaScript event object
    */
   changeUser(event) {
     const field = event.target.name;

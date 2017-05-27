@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Auth from '../modules/Auth';
 import LoginForm from '../components/LoginForm.jsx';
+import setCurrentUser from '../actions/set_current_user'
 
 
 class LoginPage extends React.Component {
@@ -59,13 +60,12 @@ class LoginPage extends React.Component {
         Auth.authenticateUser(xhr.response.token);
 
         //***************************
-        // Need to set currentUser in Redux store
-        // 
+        // Need to set currentUser in Redux store upon Logging in
+        // Need to set currentUser to empy object upon logging out
+        setCurrentUser(xhr.response.userData);
 
         //***************************
 
-
-        // change the current URL to /
         this.context.router.replace('/');
       } else {
         // failure
@@ -83,9 +83,7 @@ class LoginPage extends React.Component {
   }
 
   /**
-   * Change the user object.
-   *
-   * @param {object} event - the JavaScript event object
+   * Change the user object in React state.
    */
   changeUser(event) {
     const field = event.target.name;
@@ -97,9 +95,6 @@ class LoginPage extends React.Component {
     });
   }
 
-  /**
-   * Render the component.
-   */
   render() {
     return (
       <LoginForm
@@ -118,4 +113,18 @@ LoginPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
+
 export default LoginPage;
+
+
+
+
+
+
+
+
+
+
+
+
+

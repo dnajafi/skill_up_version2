@@ -2,7 +2,10 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
-const Dashboard = ({ secretData }) => (
+const Dashboard = ({ 
+	secretData,
+	currentUser
+}) => (
   <Card className="container">
     <CardTitle
       title="Dashboard"

@@ -42,11 +42,19 @@ module.exports = new PassportLocalStrategy({
 
       // create a token string
       const token = jwt.sign(payload, config.jwtSecret);
-      const data = {
-        name: user.name
+
+      const userData = {
+        name: user.name,
+        email: user.email,
+        following: user.following,
+        followers: user.followers,
+        skills: user.skills,
+        image_url: user.image_url,
+        bio: user.bio,
+        motto: user.motto
       };
 
-      return done(null, token, data);
+      return done(null, token, userData);
     });
   });
 });

@@ -4,13 +4,13 @@ import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
+import setCurrentUser from './actions'
 
 
 const routes = {
-  // base component (wrapper for the whole application).
+  // Root component (wrapper for the whole application).
   component: Base,
   childRoutes: [
-
     {
       path: '/',
       getComponent: (location, callback) => {
@@ -36,6 +36,7 @@ const routes = {
       path: '/logout',
       onEnter: (nextState, replace) => {
         Auth.deauthenticateUser();
+        setCurrentUser({}); // set the current user to an empty object after logging out
 
         // change the current URL to /
         replace('/');

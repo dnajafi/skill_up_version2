@@ -1,6 +1,9 @@
-import React from 'react';
-import Auth from '../modules/Auth';
-import Dashboard from '../components/Dashboard.jsx';
+import React from 'react'
+import Auth from '../modules/Auth'
+import Dashboard from '../components/Dashboard.jsx'
+import { connect } from 'react-redux'
+import getCurrentUser from '../reducers/login_reducer'
+
 
 
 class DashboardPage extends React.Component {
@@ -36,4 +39,16 @@ class DashboardPage extends React.Component {
 
 }
 
-export default DashboardPage;
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+export default connect(mapStateToProps, {})(DashboardPage);
+
+// export default DashboardPage;
+
+
+
+
+
+
