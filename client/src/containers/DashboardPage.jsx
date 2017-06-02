@@ -12,7 +12,8 @@ class DashboardPage extends React.Component {
     super(props);
 
     this.state = {
-      secretData: ''
+      secretData: '',
+      currentUser: {}
     };
   }
 
@@ -32,8 +33,11 @@ class DashboardPage extends React.Component {
     });
     xhr.send();
   }
+  
 
   render() {
+    console.log(this.state.secretData);
+    console.log(this.state.currentUser);
     return (<Dashboard secretData={this.state.secretData} />);
   }
 

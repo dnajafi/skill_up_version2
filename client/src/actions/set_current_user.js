@@ -1,10 +1,19 @@
 import ActionTypes from '../constants/action_types';
+import store from '../store/store'
 
-export function setCurrentUser(userData) {
-	return dispatch => {
-		dispatch(setCurrentUserRequestedAction());
-		dispatch(setCurrentUserFulfilledAction(userData));
-	}
+export default function setCurrentUser(userData) {
+	var requestSetUserPromise = new Promise((resolve, reject) => {
+		var userRequestedAction = setCurrentUserRequestedAction();
+		resolve(store.dispatch(userRequestedAction));
+	});
+
+	var fulfillSetUserPromise = new Promise((resolve, reject) => {
+		var fulfillAction = setCurrentUserFulfilledAction(userData);
+		resolve(store.dispatch(fulfillAction));
+	});
+
+	var promises = [requestSetUserPromise, fulfillSetUserPromise];
+	return promises;
 }
 
 function setCurrentUserRequestedAction() {

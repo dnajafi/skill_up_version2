@@ -62,11 +62,26 @@ class LoginPage extends React.Component {
         //***************************
         // Need to set currentUser in Redux store upon Logging in
         // Need to set currentUser to empy object upon logging out
-        setCurrentUser(xhr.response.userData);
+
+
+
+
+        console.log(xhr.response.userData);
+
+        console.log('Store: ');
+        console.log(this.props);
+
+        Promise.all(setCurrentUser(xhr.response.userData))
+          .then(() => {
+            this.context.router.replace('/');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
         //***************************
 
-        this.context.router.replace('/');
+        // this.context.router.replace('/');
       } else {
         // failure
 

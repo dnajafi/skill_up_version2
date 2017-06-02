@@ -4,7 +4,8 @@ import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
-import setCurrentUser from './actions'
+// import setCurrentUser from './actions'
+import setCurrentUser from './actions/set_current_user'
 
 
 const routes = {
@@ -36,10 +37,15 @@ const routes = {
       path: '/logout',
       onEnter: (nextState, replace) => {
         Auth.deauthenticateUser();
-        setCurrentUser({}); // set the current user to an empty object after logging out
 
-        // change the current URL to /
-        replace('/');
+        Promise.all(setCurrentUser({})) // set the current user to an empty object after logging out
+          .then(() => {
+            // change the current URL to /
+            replace('/');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
 
