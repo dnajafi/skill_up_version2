@@ -57,19 +57,7 @@ class LoginPage extends React.Component {
         });
 
         // save the token
-        Auth.authenticateUser(xhr.response.token);
-
-        //***************************
-        // Need to set currentUser in Redux store upon Logging in
-        // Need to set currentUser to empy object upon logging out
-
-
-
-
-        console.log(xhr.response.userData);
-
-        console.log('Store: ');
-        console.log(this.props);
+        Auth.authenticateUser(xhr.response.token, xhr.response.userData);
 
         Promise.all(setCurrentUser(xhr.response.userData))
           .then(() => {
@@ -78,10 +66,6 @@ class LoginPage extends React.Component {
           .catch((err) => {
             console.log(err);
           });
-
-        //***************************
-
-        // this.context.router.replace('/');
       } else {
         // failure
 

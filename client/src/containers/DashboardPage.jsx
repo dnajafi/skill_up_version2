@@ -33,19 +33,24 @@ class DashboardPage extends React.Component {
     });
     xhr.send();
   }
+
+  viewProfile() {
+    this.props.router.replace('/profile');
+  }
   
 
   render() {
-    console.log(this.state.secretData);
-    console.log(this.state.currentUser);
-    return (<Dashboard secretData={this.state.secretData} />);
+    return (<Dashboard secretData={this.state.secretData} currentUser={this.props.currentUser} viewProfile={this.viewProfile.bind(this)} />);
   }
+
 
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.loginState.currentUser || localStorage.getItem('currentUser'),
 });
+
+// const DashboardPage = connect(mapStateToProps, {})(Dashboard);
 
 export default connect(mapStateToProps, {})(DashboardPage);
 
