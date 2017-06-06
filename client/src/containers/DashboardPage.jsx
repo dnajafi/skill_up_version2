@@ -2,9 +2,6 @@ import React from 'react'
 import Auth from '../modules/Auth'
 import Dashboard from '../components/Dashboard.jsx'
 import { connect } from 'react-redux'
-import getCurrentUser from '../reducers/login_reducer'
-
-
 
 class DashboardPage extends React.Component {
 
@@ -42,19 +39,15 @@ class DashboardPage extends React.Component {
   render() {
     return (<Dashboard secretData={this.state.secretData} currentUser={this.props.currentUser} viewProfile={this.viewProfile.bind(this)} />);
   }
-
-
 }
 
 const mapStateToProps = state => ({
   currentUser: state.loginState.currentUser || localStorage.getItem('currentUser'),
 });
 
-// const DashboardPage = connect(mapStateToProps, {})(Dashboard);
-
 export default connect(mapStateToProps, {})(DashboardPage);
 
-// export default DashboardPage;
+
 
 
 

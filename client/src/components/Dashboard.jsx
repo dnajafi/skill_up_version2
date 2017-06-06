@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
@@ -34,7 +35,7 @@ const Dashboard = ({
 	  	</Card>
 
 	  	<div>
-	  		<a onClick={viewProfile}><p>View Your Profile</p></a>
+	  		<CardText><Link to={'/profile'}>View Your Profile</Link>.</CardText>
 	  		<p>View Your Skills</p>
 	  		<p>View Your Followers</p>
 
