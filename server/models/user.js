@@ -26,13 +26,16 @@ const UserSchema = new mongoose.Schema({
     ref: 'Skill'
   }],
   image_url: {
-    type: String
+    type: String,
+    default: ''
   },
   bio: {
-    type: String
+    type: String,
+    default: ''
   },
   motto: {
-    type: String
+    type: String,
+    default: ''
   }
 });
 

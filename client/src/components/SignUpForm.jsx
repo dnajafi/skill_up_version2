@@ -48,6 +48,18 @@ const SignUpForm = ({
         />
       </div>
 
+      <div className="field-line">
+        <TextField
+          floatingLabelText="URL to an Image of You"
+          name="image_url"
+          onChange={onChange}
+          errorText={errors.image_url}
+          value={user.image_url}
+        />
+      </div>
+
+
+
       <div className="button-line">
         <RaisedButton type="submit" label="Create New Account" primary />
       </div>

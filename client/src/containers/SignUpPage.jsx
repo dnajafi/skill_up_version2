@@ -12,7 +12,8 @@ class SignUpPage extends React.Component {
       user: {
         email: '',
         name: '',
-        password: ''
+        password: '',
+        image_url: ''
       }
     };
 
@@ -31,7 +32,9 @@ class SignUpPage extends React.Component {
     const name = encodeURIComponent(this.state.user.name);
     const email = encodeURIComponent(this.state.user.email);
     const password = encodeURIComponent(this.state.user.password);
-    const formData = `name=${name}&email=${email}&password=${password}`;
+    const skill = encodeURIComponent(this.state.user.skill);
+    const image_url = encodeURIComponent(this.state.user.image_url);
+    const formData = `name=${name}&email=${email}&password=${password}&image_url=${image_url}`;
 
     // create an AJAX request
     const xhr = new XMLHttpRequest();

@@ -66,3 +66,33 @@ a:hover {
   padding: 0 16px;
   color: green;
 }
+
+.profile-pic {
+    position: relative;
+    left: 35px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.bio-box {
+  position: relative;
+  top: 4em;
+  left: 5em;
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15%;
+}
+
+.profile-page {
+  background-color: #D0D0D0;
+  padding-top: 2em;
+  margin-top: -3em;
+}
+
+
+
+

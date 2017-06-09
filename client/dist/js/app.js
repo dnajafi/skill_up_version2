@@ -17609,11 +17609,78 @@ var Dashboard = function Dashboard(_ref) {
 
 	return _react2.default.createElement(
 		'div',
-		null,
+		{ className: 'profile-page' },
 		_react2.default.createElement(
-			'p',
-			null,
-			'yoyoyo'
+			'div',
+			{ className: 'row' },
+			_react2.default.createElement('div', { className: 'col-md-1' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'col-md-10' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-3' },
+					_react2.default.createElement('img', { className: 'img-responsive profile-pic', src: currentUser.image_url })
+				),
+				_react2.default.createElement(
+					'div',
+					{ id: 'about', className: 'col-md-7 bio-box text-center' },
+					_react2.default.createElement(
+						'p',
+						null,
+						currentUser.bio ? currentUser.bio : 'User has incomplete bio section'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						currentUser.motto ? currentUser.motto : 'User has incomplete motto section'
+					)
+				)
+			),
+			_react2.default.createElement('div', { className: 'col-md-1' })
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'row' },
+			_react2.default.createElement('div', { className: 'col-md-1' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'col-md-10' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-5' },
+					_react2.default.createElement(
+						'p',
+						null,
+						'Current Followers'
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-5' },
+					_react2.default.createElement(
+						'p',
+						null,
+						'Curently Following'
+					)
+				)
+			),
+			_react2.default.createElement('div', { className: 'col-md-1' })
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'row' },
+			_react2.default.createElement('div', { className: 'col-md-1' }),
+			_react2.default.createElement(
+				'div',
+				{ className: 'col-md-10' },
+				_react2.default.createElement(
+					'p',
+					null,
+					'Skills Section'
+				)
+			),
+			_react2.default.createElement('div', { className: 'col-md-1' })
 		)
 	);
 };
@@ -17702,6 +17769,17 @@ var SignUpForm = function SignUpForm(_ref) {
           onChange: onChange,
           errorText: errors.password,
           value: user.password
+        })
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'field-line' },
+        _react2.default.createElement(_TextField2.default, {
+          floatingLabelText: 'URL to an Image of You',
+          name: 'image_url',
+          onChange: onChange,
+          errorText: errors.image_url,
+          value: user.image_url
         })
       ),
       _react2.default.createElement(
@@ -18107,7 +18185,8 @@ var SignUpPage = function (_React$Component) {
       user: {
         email: '',
         name: '',
-        password: ''
+        password: '',
+        image_url: ''
       }
     };
 
@@ -18133,7 +18212,9 @@ var SignUpPage = function (_React$Component) {
       var name = encodeURIComponent(this.state.user.name);
       var email = encodeURIComponent(this.state.user.email);
       var password = encodeURIComponent(this.state.user.password);
-      var formData = 'name=' + name + '&email=' + email + '&password=' + password;
+      var skill = encodeURIComponent(this.state.user.skill);
+      var image_url = encodeURIComponent(this.state.user.image_url);
+      var formData = 'name=' + name + '&email=' + email + '&password=' + password + '&image_url=' + image_url;
 
       // create an AJAX request
       var xhr = new XMLHttpRequest();

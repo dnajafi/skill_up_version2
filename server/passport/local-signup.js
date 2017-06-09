@@ -14,7 +14,8 @@ module.exports = new PassportLocalStrategy({
   const userData = {
     email: email.trim(),
     password: password.trim(),
-    name: req.body.name.trim()
+    name: req.body.name.trim(),
+    image_url: req.body.image_url.trim()
   };
 
   const newUser = new User(userData);

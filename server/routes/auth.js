@@ -29,6 +29,11 @@ function validateSignupForm(payload) {
     errors.name = 'Please provide your name.';
   }
 
+  if (!payload || typeof payload.image_url !== 'string' || payload.image_url.trim().length === 0) {
+    isFormValid = false;
+    errors.image_url = 'Please provide a URL to an image of you.';
+  }
+
   if (!isFormValid) {
     message = 'Check the form for errors.';
   }
